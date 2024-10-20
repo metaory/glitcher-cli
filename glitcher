@@ -1,0 +1,193 @@
+#!/bin/bash
+
+OUT="${1:?MISS_OUTPUT_ARG}"
+TXT="${*:2}"
+
+[ "$TXT" = "" ] && {
+  echo MISS_TEXT
+  exit 1
+}
+
+function rnd_int {
+  local MAX="${1:-20}"
+  echo $(((RANDOM % MAX) + 3))
+}
+
+function rnd_float {
+  local MAX="${1:-100}"
+  local REV="${2:-0}"
+  ((RANDOM % 2 && REV)) && NEG=-1 || NEG=1
+  printf '%.2f\n' "$(bc -l <<<"scale=2; ($(((RANDOM % MAX) + 1)) / 100) * $NEG")"
+}
+
+function rnd_seq {
+  local keys=()
+  local vals=''
+  local count=0
+  local steps="$(((RANDOM % 30) + 5))"
+  while ((count < steps)); do
+    ((count++))
+    keys+=("$(rnd_float)")
+  done
+  mapfile -t keys < <(
+    printf '0;\n'
+    printf '%s;\n' "${keys[@]}" | sort -n | uniq
+  )
+  for _ in "${keys[@]}"; do
+    vals+="$(rnd_float 7 1); "
+  done
+  local ks="${keys[*]}"
+  printf '%s\n%s' "${ks::(-2)}" "${vals::(-2)}"
+}
+
+mapfile -t B_SHIFT < <(rnd_seq)
+mapfile -t R_SHIFT < <(rnd_seq)
+read -r B_DUR < <(rnd_int 30)
+read -r R_DUR < <(rnd_int 30)
+
+cat <<EOF >"$OUT"
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 60 10"
+     id="glitched">
+      <!-- made with glitcher-cli v0.1
+
+        █▀▀ █░░ █ ▀█▀ █▀▀ █░█ █▀▀ █▀█
+        █▄█ █▄▄ █ ░█░ █▄▄ █▀█ ██▄ █▀▄
+
+      https://github.com/metaory/glitcher-cli -->
+     <style>
+         .text-centered {
+             font: bold 10px monospace, sans;
+             fill: #220033;
+             dominant-baseline: middle;
+             text-anchor: middle;
+          }
+
+          @media (prefers-color-scheme: dark) {
+             .text-centered {
+                 fill: #DDCCFF;
+             }
+          }
+      </style>
+      <text
+          class="text-centered"
+          filter="url(#glitch)" x="50%" y="50%"
+      >${TXT}</text>
+      <defs>
+      <filter id="glitch"
+          primitiveUnits="objectBoundingBox"
+          x="-10%"
+          y="0%"
+          width="120%"
+          height="100%">
+          <feColorMatrix in="SourceGraphic"
+                         result="red"
+                         type="matrix"
+                         values="1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0" />
+          <feColorMatrix in="SourceGraphic"
+                         result="green"
+                         type="matrix"
+                         values="0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0" />
+          <feColorMatrix in="SourceGraphic"
+                         result="blue"
+                         type="matrix"
+                         values="0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0" />
+          <feOffset in="red"
+                    result="red-shifted"
+                    dx="-0.05"
+                    dy="0">
+          <animate attributeName="dx"
+                   keyTimes="${R_SHIFT[0]}"
+                   values="${R_SHIFT[1]}"
+                   begin="0"
+                   dur="${R_DUR}s"
+                   calcMode="discrete"
+                   repeatCount="indefinite"
+                   fill="freeze" />
+            </feOffset>
+            <feOffset in="blue"
+                      result="blue-shifted"
+                      dx="0.05"
+                      dy="0">
+                <animate attributeName="dx"
+                         keyTimes="${B_SHIFT[0]}"
+                         values="${B_SHIFT[1]}"
+                         begin="0"
+                         dur="${B_DUR}s"
+                         calcMode="discrete"
+                         repeatCount="indefinite"
+                         fill="freeze" />
+            </feOffset>
+            <feBlend mode="screen"
+                     in="red-shifted"
+                     in2="green"
+                     result="red-green" />
+            <feBlend mode="screen"
+                     in="red-green"
+                     in2="blue-shifted"
+                     result="blended" />
+EOF
+
+I=0
+NW=0
+SLICES=()
+
+function put_slice {
+  ((I++))
+  read -r S1 < <(rnd_int 30)
+  read -r S2 < <(rnd_int)
+  read -r DR < <(rnd_int 30)
+
+  mapfile -t SEQ < <(rnd_seq)
+
+  NX=$((NW + S1))
+  SA="slice_${I}a"
+  SB="slice_${I}b"
+  SLICES+=("$SA" "$SB")
+
+  cat <<EOF >>"$OUT"
+    <feOffset in="blended"
+              dx="0"
+              dy="0"
+              y="${NW}%"
+              height="${S1}%"
+              result="${SA}" />
+    <feOffset in="blended"
+              dx="0"
+              dy="0"
+              y="${NX}%"
+              height="${S2}%"
+              result="${SB}">
+        <animate attributeName="dx"
+                 keyTimes="${SEQ[0]}"
+                 values="${SEQ[1]}"
+                 begin="0s"
+                 dur="${DR}s"
+                 calcMode="discrete"
+                 repeatCount="indefinite"
+                 fill="freeze" />
+    </feOffset>
+EOF
+  NW=$((NX + S2))
+}
+
+while ((NW <= 100)); do
+  put_slice
+done
+
+cat <<<'    <feMerge>' >>"$OUT"
+
+for S in "${SLICES[@]}"; do
+  cat <<<"        <feMergeNode in=""\"${S}\""" />" >>"$OUT"
+done
+
+cat <<EOF >>"$OUT"
+    </feMerge>
+    </filter>
+    </defs>
+</svg>
+EOF
+
+echo "created $OUT successfully."
+
+# vim: ft=bash
