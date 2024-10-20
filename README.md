@@ -2,6 +2,7 @@
   <h1>ḠĿ𐪌𐌕ꛕ𖩘꠵ⵤ</h1>
   <h4>generate animated pseudo random glitch SVG from ASCII characters</h4>
   <img src=".github/assets/glitcher.svg" width="256px"/>
+  <img src=".github/assets/logo.svg" width="256px"/>
 </div>
 
 ---
