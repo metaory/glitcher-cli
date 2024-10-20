@@ -1,10 +1,7 @@
-GLITCHER-CLI
-============
-
 <div align="center">
   <h1>ḠĿ𐪌𐌕ꛕ𖩘꠵ⵤ</h1>
-  <img src=".github/assets/glitcher.svg" width="256px"/>
   <h4>generate animated pseudo random glitch SVG from ASCII characters</h4>
+  <img src=".github/assets/glitcher.svg" width="256px"/>
 </div>
 
 ---
@@ -14,9 +11,6 @@ GLITCHER-CLI
 </div>
 
 ---
-
-DEMO
-----
 
 <div align="center">
   <img src=".github/assets/demo_1.svg" width="256px"/>
@@ -124,9 +118,9 @@ TODO
 
 ---
 
-	█▀▀ █░░ █ ▀█▀ █▀▀ █░█ █▀▀ █▀█
-	█▄█ █▄▄ █ ░█░ █▄▄ █▀█ ██▄ █▀▄
-	▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁v0.1▁
+<div align="center">
+  <h1>ḠĿ𐪌𐌕ꛕ𖩘꠵ⵤ</h1>
+</div>
 
 ---
 
