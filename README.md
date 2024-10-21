@@ -69,8 +69,8 @@ chmod +x glitcher
 ln -svf $PWD/glitcher /usr/bin/glitcher
 
 # Use it anywhere
-# Create out.svg with 'foobar' content
-glitcher out.svg foobar
+# Create out.svg with 'hello world' content
+glitcher out.svg hello world
 ```
 
 ---
@@ -84,14 +84,18 @@ glitcher out.svg foobar
 SYNOPSIS
 --------
 
-	glitcher FILE TEXT
+	glitcher FILE TEXT...
 
 ---
 
 REQUIREMENTS
 ------------
 
+- Bash v5
 - GNU bc
+- GNU coreutils
+  - sort
+  - uniq
 
 ---
 
@@ -106,10 +110,8 @@ TODO
 
 ---
 
-> [!Note]
+> [!Caution]
 > Only tested on Linux
->
-> Reconsider your life choices if you're running  💩 Windows!
 
 ---
 

@@ -1,11 +1,32 @@
 #!/bin/bash
 
-OUT="${1:?MISS_OUTPUT_ARG}"
+OUT="${1}"
 TXT="${*:2}"
 
-[ "$TXT" = "" ] && {
-  echo MISS_TEXT
+function print_help {
+  cat << EOF
+
+$ glitcher FILE TEXT...
+
+eg.
+glitcher out.svg hello world
+EOF
+}
+
+! [[ "$BASH_VERSION" =~ 5.* ]] && {
+  echo "[ERROR] Bash v5 or higher is required, found $BASH_VERSION"
   exit 1
+}
+
+[ "$OUT" = "" ] || [ "$TXT" = "" ] && {
+  echo " [ERROR] bad argument"
+  print_help
+  exit 1
+}
+
+! [ "$OSTYPE" = "linux-gnu" ] && {
+  echo "[WARNING] only tested on linux-gnu"
+  sleep 3
 }
 
 function rnd_int {
