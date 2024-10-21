@@ -55,13 +55,19 @@ INSTALLATION
 - give execution permissions
 - place it in your path
 
-```ex
+```sh
 # Clone
 git clone git@github.com:metaory/glitcher-cli.git
 
 # Navigate
 cd glitcher-cli
+```
 
+> [!Tip]
+> Temporary usage
+> `bash glitcher out.svg hello world` 
+
+```sh
 # Give execution permissions
 chmod +x glitcher
 
