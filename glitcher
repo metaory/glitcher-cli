@@ -70,37 +70,35 @@ read -r R_DUR < <(rnd_int 30)
 
 cat <<EOF >"$OUT"
 <svg xmlns="http://www.w3.org/2000/svg"
-     viewBox="0 0 400 40"
-     id="glitched">
-      <!-- made with glitcher-cli v0.1
+     viewBox="0 0 200 40"
+     preserveAspectRatio="none" >
+      <!-- made with glitcher-cli v0.2
 
         █▀▀ █░░ █ ▀█▀ █▀▀ █░█ █▀▀ █▀█
         █▄█ █▄▄ █ ░█░ █▄▄ █▀█ ██▄ █▀▄
 
       https://github.com/metaory/glitcher-cli -->
-     <style>
-          text {
-             fill: #220033;
-          }
-          @media (prefers-color-scheme: dark) {
-             text { fill: #DDCCFF; }
-          }
+      <style>
+          text { fill: #220033; }
+          @media (prefers-color-scheme: dark) { text { fill: #DDCCFF; } }
       </style>
-      <text
-          font-family="monospace, serif"
-          font-weight="bolder"
-          font-size="x-large"
-          text-anchor="middle"
-          dominant-baseline="middle"
-          filter="url(#glitch)" x="50%" y="50%"
+      <text filter="url(#glitch)"
+            font-family="monospace, serif"
+            font-weight="bolder"
+            font-size="x-large"
+            textLength="90%"
+            lengthAdjust="spacingAndGlyphs"
+            text-anchor="middle"
+            dominant-baseline="middle"
+            x="50%" y="50%"
       >${TXT}</text>
       <defs>
       <filter id="glitch"
-          primitiveUnits="objectBoundingBox"
-          x="-10%"
-          y="0%"
-          width="120%"
-          height="100%">
+              primitiveUnits="objectBoundingBox"
+              x="-10%"
+              y="0%"
+              width="120%"
+              height="100%">
           <feColorMatrix in="SourceGraphic"
                          result="red"
                          type="matrix"
