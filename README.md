@@ -97,7 +97,7 @@ SYNOPSIS
 REQUIREMENTS
 ------------
 
-- Bash v5
+- GNU Bash v5+
 - GNU bc
 - GNU coreutils
   - sort
