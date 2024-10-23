@@ -78,7 +78,7 @@ cat <<EOF >"$OUT"
       https://github.com/metaory/glitcher-cli -->
      <style>
           @media (prefers-color-scheme: dark) {
-             text { fill: #110033; }
+             text { fill: #DDCCFF; }
           }
       </style>
       <text
@@ -86,7 +86,7 @@ cat <<EOF >"$OUT"
           font-weight="bolder"
           font-size="x-large"
           text-anchor="middle"
-          fill="#220033"
+          fill="#110033"
           dominant-baseline="middle"
           filter="url(#glitch)" x="50%" y="50%"
       >${TXT}</text>
