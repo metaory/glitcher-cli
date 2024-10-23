@@ -3,8 +3,10 @@
 OUT="${1}"
 TXT="${*:2}"
 
+[ ! -t 0 ] && { read -r TXT; }
+
 function print_help {
-  cat << EOF
+  cat <<EOF
 
 $ glitcher FILE TEXT...
 
@@ -77,6 +79,9 @@ cat <<EOF >"$OUT"
 
       https://github.com/metaory/glitcher-cli -->
      <style>
+          text {
+             fill: #220033;
+          }
           @media (prefers-color-scheme: dark) {
              text { fill: #DDCCFF; }
           }
@@ -86,7 +91,6 @@ cat <<EOF >"$OUT"
           font-weight="bolder"
           font-size="x-large"
           text-anchor="middle"
-          fill="#110033"
           dominant-baseline="middle"
           filter="url(#glitch)" x="50%" y="50%"
       >${TXT}</text>
