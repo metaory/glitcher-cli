@@ -52,13 +52,13 @@ function rnd_seq {
   done
   mapfile -t keys < <(
     printf '0;\n'
-    printf '%s;\n' "${keys[@]}" | sort -n | uniq
+    printf '%s;\n' "${keys[@]}" | sort -g | uniq
   )
   for _ in "${keys[@]}"; do
     vals+="$(rnd_float 7 1); "
   done
   local ks="${keys[*]}"
-  printf '%s\n%s' "${ks::(-2)}" "${vals::(-2)}"
+  printf '%s\n%s' "${ks::(-1)}" "${vals::(-2)}"
 }
 
 mapfile -t B_SHIFT < <(rnd_seq)
@@ -68,7 +68,7 @@ read -r R_DUR < <(rnd_int 30)
 
 cat <<EOF >"$OUT"
 <svg xmlns="http://www.w3.org/2000/svg"
-     viewBox="0 0 60 10"
+     viewBox="0 0 400 40"
      id="glitched">
       <!-- made with glitcher-cli v0.1
 
@@ -77,21 +77,17 @@ cat <<EOF >"$OUT"
 
       https://github.com/metaory/glitcher-cli -->
      <style>
-         .text-centered {
-             font: bold 10px monospace, sans;
-             fill: #220033;
-             dominant-baseline: middle;
-             text-anchor: middle;
-          }
-
           @media (prefers-color-scheme: dark) {
-             .text-centered {
-                 fill: #DDCCFF;
-             }
+             text { fill: #110033; }
           }
       </style>
       <text
-          class="text-centered"
+          font-family="monospace, serif"
+          font-weight="bolder"
+          font-size="x-large"
+          text-anchor="middle"
+          fill="#220033"
+          dominant-baseline="middle"
           filter="url(#glitch)" x="50%" y="50%"
       >${TXT}</text>
       <defs>
