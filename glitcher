@@ -70,7 +70,7 @@ read -r R_DUR < <(rnd_int 30)
 
 cat <<EOF >"$OUT"
 <svg xmlns="http://www.w3.org/2000/svg"
-     viewBox="0 0 200 40"
+     viewBox="0 0 100 20"
      preserveAspectRatio="none" >
       <!-- made with glitcher-cli v0.2
 
@@ -86,9 +86,9 @@ cat <<EOF >"$OUT"
             font-family="monospace, serif"
             font-weight="bolder"
             font-size="x-large"
-            textLength="90%"
-            lengthAdjust="spacingAndGlyphs"
             text-anchor="middle"
+            textLength="80"
+            lengthAdjust="spacingAndGlyphs"
             dominant-baseline="middle"
             x="50%" y="50%"
       >${TXT}</text>

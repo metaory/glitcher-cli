@@ -1,31 +1,31 @@
 <div align="center">
   <h1>ḠĿ𐪌𐌕ꛕ𖩘꠵ⵤ</h1>
   <h4>generate animated pseudo random glitch SVG from ASCII characters</h4>
-  <img src=".github/assets/glitcher.svg" width="256px"/>
-  <img src=".github/assets/logo.svg" width="256px"/>
+  <img src=".github/assets/glitcher.svg" width="45%" height="30" />
+  <img src=".github/assets/logo.svg" width="45%" height="30" />
 </div>
 
 ---
 
 <div align="center">
-  <img src=".github/assets/line_1.svg" width="100%" height="20px"/>
+    <img src=".github/assets/line_1.svg" width="100%" height="30"/>
 </div>
 
 ---
 
 <div align="center">
-  <img src=".github/assets/demo_1.svg" width="256px"/>
-  <img src=".github/assets/demo_2.svg" width="256px"/>
-  <img src=".github/assets/demo_3.svg" width="256px"/>
-  <img src=".github/assets/demo_4.svg" width="256px"/>
-  <img src=".github/assets/demo_5.svg" width="256px"/>
-  <img src=".github/assets/demo_6.svg" width="256px"/>
+  <img src=".github/assets/demo_1.svg" width="30%" height="30" />
+  <img src=".github/assets/demo_2.svg" width="30%" height="30" />
+  <img src=".github/assets/demo_3.svg" width="30%" height="30" />
+  <img src=".github/assets/demo_4.svg" width="30%" height="30" />
+  <img src=".github/assets/demo_5.svg" width="30%" height="30" />
+  <img src=".github/assets/demo_6.svg" width="30%" height="30" />
 </div>
 
 ---
 
 <div align="center">
-  <img src=".github/assets/line_2.svg" width="100%" height="20px"/>
+  <img src=".github/assets/line_2.svg" width="100%" height="20"/>
 </div>
 
 ---
@@ -43,7 +43,7 @@
 ---
 
 <div align="center">
-  <img src=".github/assets/line_3.svg" width="100%" height="20px"/>
+  <img src=".github/assets/line_3.svg" width="100%" height="20"/>
 </div>
 
 ---
@@ -65,7 +65,7 @@ cd glitcher-cli
 
 > [!Tip]
 > Temporary usage
-> `bash glitcher out.svg hello world` 
+> `bash glitcher out.svg hello world`
 
 ```sh
 # Give execution permissions
@@ -82,7 +82,7 @@ glitcher out.svg hello world
 ---
 
 <div align="center">
-  <img src=".github/assets/line_4.svg" width="100%" height="20px"/>
+  <img src=".github/assets/line_4.svg" width="100%" height="20"/>
 </div>
 
 ---
@@ -122,7 +122,7 @@ TODO
 ---
 
 <div align="center">
-  <img src=".github/assets/line_5.svg" width="100%" height="20px"/>
+  <img src=".github/assets/line_5.svg" width="100%" height="20"/>
 </div>
 
 ---
