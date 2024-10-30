@@ -2,6 +2,7 @@
 
 OUT="${1}"
 TXT="${*:2}"
+GLITCHER_DEBUG="${GLITCHER_DEBUG:-0}"
 
 [ ! -t 0 ] && { read -r TXT; }
 
@@ -32,12 +33,12 @@ EOF
 }
 
 function rnd_int {
-  local MAX="${1:-20}"
-  echo $(((RANDOM % MAX) + 3))
+  local MAX="${1:-24}"
+  echo $(((RANDOM % MAX) + 8))
 }
 
 function rnd_float {
-  local MAX="${1:-100}"
+  local MAX="${1:-99}"
   local REV="${2:-0}"
   ((RANDOM % 2 && REV)) && NEG=-1 || NEG=1
   printf '%.2f\n' "$(bc -l <<<"scale=2; ($(((RANDOM % MAX) + 1)) / 100) * $NEG")"
@@ -47,7 +48,7 @@ function rnd_seq {
   local keys=()
   local vals=''
   local count=0
-  local steps="$(((RANDOM % 30) + 5))"
+  local steps="$(((RANDOM % 16) + 8))"
   while ((count < steps)); do
     ((count++))
     keys+=("$(rnd_float)")
@@ -57,7 +58,8 @@ function rnd_seq {
     printf '%s;\n' "${keys[@]}" | sort -g | uniq
   )
   for _ in "${keys[@]}"; do
-    vals+="$(rnd_float 7 1); "
+    ((UPPER = RANDOM % 6 ? 2 : 4))
+    vals+="$(rnd_float ${UPPER} 1); "
   done
   local ks="${keys[*]}"
   printf '%s\n%s' "${ks::(-1)}" "${vals::(-2)}"
@@ -65,14 +67,16 @@ function rnd_seq {
 
 mapfile -t B_SHIFT < <(rnd_seq)
 mapfile -t R_SHIFT < <(rnd_seq)
-read -r B_DUR < <(rnd_int 30)
-read -r R_DUR < <(rnd_int 30)
+read -r B_DUR < <(rnd_int 60)
+read -r R_DUR < <(rnd_int 60)
+read -r WIDTH < <(bc <<<"${#TXT} * 18")
+
+((GLITCHER_DEBUG)) && RECT='<rect fill="#ee33aa" width="100%" height="100%" x="0" y="0" />'
 
 cat <<EOF >"$OUT"
 <svg xmlns="http://www.w3.org/2000/svg"
-     viewBox="0 0 100 20"
-     preserveAspectRatio="none" >
-      <!-- made with glitcher-cli v0.2
+     viewBox="0 0 ${WIDTH} 40" >
+      <!-- made with glitcher-cli v0.3
 
         █▀▀ █░░ █ ▀█▀ █▀▀ █░█ █▀▀ █▀█
         █▄█ █▄▄ █ ░█░ █▄▄ █▀█ ██▄ █▀▄
@@ -82,13 +86,12 @@ cat <<EOF >"$OUT"
           text { fill: #220033; }
           @media (prefers-color-scheme: dark) { text { fill: #DDCCFF; } }
       </style>
+      ${RECT}
       <text filter="url(#glitch)"
             font-family="monospace, serif"
             font-weight="bolder"
             font-size="x-large"
             text-anchor="middle"
-            textLength="80"
-            lengthAdjust="spacingAndGlyphs"
             dominant-baseline="middle"
             x="50%" y="50%"
       >${TXT}</text>
@@ -154,8 +157,8 @@ SLICES=()
 function put_slice {
   ((I++))
   read -r S1 < <(rnd_int 30)
-  read -r S2 < <(rnd_int)
-  read -r DR < <(rnd_int 30)
+  read -r S2 < <(rnd_int 10)
+  read -r DR < <(rnd_int 60)
 
   mapfile -t SEQ < <(rnd_seq)
 
@@ -190,9 +193,7 @@ EOF
   NW=$((NX + S2))
 }
 
-while ((NW <= 100)); do
-  put_slice
-done
+while ((NW <= 100)); do put_slice; done
 
 cat <<<'    <feMerge>' >>"$OUT"
 
