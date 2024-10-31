@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg"
-     viewBox="0 0 288 40" >
+     viewBox="0 0 288 24" >
       <!-- made with glitcher-cli v0.3
 
         █▀▀ █░░ █ ▀█▀ █▀▀ █░█ █▀▀ █▀█
@@ -16,9 +16,9 @@
             font-weight="bolder"
             font-size="x-large"
             text-anchor="middle"
-            dominant-baseline="middle"
-            x="50%" y="50%"
-      >+##|--=+__=.|_._</text>
+            dominant-baseline="mathematical"
+            x="50%" y="42%"
+      >+#=_--|_._+|=#._</text>
       <defs>
       <filter id="glitch"
               primitiveUnits="objectBoundingBox"
@@ -43,10 +43,10 @@
                     dx="-0.05"
                     dy="0">
           <animate attributeName="dx"
-                   keyTimes="0; 0.02; 0.07; 0.13; 0.25; 0.34; 0.37; 0.53; 0.57; 0.71; 0.74; 0.76; 0.82; 0.89; 0.95"
-                   values="0.01; 0.01; 0.02; 0.01; 0.01; 0.02; -0.02; 0.02; -0.02; 0.03; -0.02; -0.01; -0.01; 0.02; 0.01"
+                   keyTimes="0; 0.03; 0.04; 0.41; 0.43; 0.48; 0.53; 0.55; 0.59; 0.65; 0.66; 0.68; 0.80; 0.91; 0.95"
+                   values="-0.02; -0.01; 0.02; 0.02; -0.02; 0.01; 0.03; 0.01; 0.01; -0.01; -0.02; 0.01; -0.02; -0.02; -0.02"
                    begin="0"
-                   dur="65s"
+                   dur="18s"
                    calcMode="discrete"
                    repeatCount="indefinite"
                    fill="freeze" />
@@ -56,10 +56,10 @@
                       dx="0.05"
                       dy="0">
                 <animate attributeName="dx"
-                         keyTimes="0; 0.06; 0.07; 0.13; 0.28; 0.48; 0.66; 0.68; 0.74; 0.86; 0.90; 0.96"
-                         values="0.01; -0.02; 0.02; -0.02; 0.01; 0.01; 0.01; -0.02; 0.01; -0.02; -0.02; 0.02"
+                         keyTimes="0; 0.02; 0.05; 0.07; 0.12; 0.21; 0.35; 0.39; 0.46; 0.61; 0.84; 0.94"
+                         values="0.01; 0.02; -0.01; -0.02; 0.01; 0.02; -0.02; -0.02; -0.01; -0.02; -0.01; -0.01"
                          begin="0"
-                         dur="41s"
+                         dur="14s"
                          calcMode="discrete"
                          repeatCount="indefinite"
                          fill="freeze" />
@@ -76,19 +76,19 @@
               dx="0"
               dy="0"
               y="0%"
-              height="12%"
+              height="30%"
               result="slice_1a" />
     <feOffset in="blended"
               dx="0"
               dy="0"
-              y="12%"
-              height="10%"
+              y="30%"
+              height="11%"
               result="slice_1b">
         <animate attributeName="dx"
-                 keyTimes="0; 0.02; 0.14; 0.22; 0.25; 0.35; 0.59; 0.64; 0.66; 0.71; 0.74; 0.75; 0.79; 0.82; 0.90; 0.92"
-                 values="-0.02; -0.02; -0.01; 0.01; -0.02; -0.02; 0.02; 0.02; -0.02; 0.01; 0.01; -0.02; -0.02; -0.03; 0.01; -0.02"
+                 keyTimes="0; 0.08; 0.21; 0.28; 0.29; 0.30; 0.44; 0.46; 0.48; 0.50; 0.58; 0.61; 0.79; 0.85; 0.89; 0.98"
+                 values="0.01; 0.01; 0.01; -0.01; 0.01; 0.02; 0.01; -0.02; 0.02; 0.02; 0.02; 0.02; 0.01; -0.01; -0.01; 0.01"
                  begin="0s"
-                 dur="62s"
+                 dur="55s"
                  calcMode="discrete"
                  repeatCount="indefinite"
                  fill="freeze" />
@@ -96,20 +96,20 @@
     <feOffset in="blended"
               dx="0"
               dy="0"
-              y="22%"
-              height="20%"
+              y="41%"
+              height="35%"
               result="slice_2a" />
     <feOffset in="blended"
               dx="0"
               dy="0"
-              y="42%"
-              height="14%"
+              y="76%"
+              height="16%"
               result="slice_2b">
         <animate attributeName="dx"
-                 keyTimes="0; 0.03; 0.11; 0.13; 0.21; 0.33; 0.45; 0.48; 0.53; 0.59; 0.61; 0.69; 0.75; 0.80; 0.81; 0.83; 0.85; 0.91"
-                 values="-0.02; 0.01; -0.02; -0.02; 0.02; -0.02; 0.01; -0.02; -0.01; -0.02; 0.02; 0.02; 0.01; -0.01; -0.02; 0.02; -0.02; 0.01"
+                 keyTimes="0; 0.04; 0.05; 0.17; 0.20; 0.24; 0.32; 0.58; 0.59; 0.62; 0.68; 0.73; 0.74; 0.75; 0.84"
+                 values="-0.04; -0.02; -0.01; -0.01; 0.01; -0.01; -0.02; -0.01; -0.02; 0.02; 0.01; -0.02; -0.02; 0.01; 0.02"
                  begin="0s"
-                 dur="39s"
+                 dur="36s"
                  calcMode="discrete"
                  repeatCount="indefinite"
                  fill="freeze" />
@@ -117,41 +117,20 @@
     <feOffset in="blended"
               dx="0"
               dy="0"
-              y="56%"
-              height="29%"
+              y="92%"
+              height="20%"
               result="slice_3a" />
     <feOffset in="blended"
               dx="0"
               dy="0"
-              y="85%"
-              height="13%"
+              y="112%"
+              height="8%"
               result="slice_3b">
         <animate attributeName="dx"
-                 keyTimes="0; 0.01; 0.03; 0.17; 0.26; 0.31; 0.32; 0.35; 0.54; 0.56; 0.59; 0.64; 0.66; 0.69; 0.79; 0.80; 0.88; 0.92; 0.94"
-                 values="-0.03; -0.01; 0.02; -0.02; 0.02; 0.01; 0.01; -0.02; -0.02; 0.01; 0.01; -0.02; 0.02; -0.02; -0.01; -0.02; -0.02; -0.03; -0.02"
+                 keyTimes="0; 0.02; 0.12; 0.15; 0.17; 0.20; 0.21; 0.23; 0.27; 0.28; 0.33; 0.42; 0.43; 0.50; 0.51; 0.53; 0.62; 0.92; 0.98"
+                 values="-0.02; -0.02; 0.04; 0.02; -0.01; -0.02; 0.02; 0.02; 0.02; -0.01; 0.02; -0.01; 0.01; 0.01; -0.02; -0.02; 0.01; -0.01; 0.01"
                  begin="0s"
-                 dur="61s"
-                 calcMode="discrete"
-                 repeatCount="indefinite"
-                 fill="freeze" />
-    </feOffset>
-    <feOffset in="blended"
-              dx="0"
-              dy="0"
-              y="98%"
-              height="9%"
-              result="slice_4a" />
-    <feOffset in="blended"
-              dx="0"
-              dy="0"
-              y="107%"
-              height="9%"
-              result="slice_4b">
-        <animate attributeName="dx"
-                 keyTimes="0; 0.03; 0.07; 0.11; 0.13; 0.56; 0.57; 0.59; 0.60; 0.67; 0.71; 0.77; 0.79; 0.84; 0.86; 0.92; 0.95"
-                 values="0.02; 0.02; 0.01; 0.01; -0.02; 0.01; 0.01; -0.02; -0.01; 0.02; -0.01; -0.01; -0.01; 0.01; 0.01; 0.02; -0.02"
-                 begin="0s"
-                 dur="37s"
+                 dur="45s"
                  calcMode="discrete"
                  repeatCount="indefinite"
                  fill="freeze" />
@@ -163,8 +142,6 @@
         <feMergeNode in="slice_2b" />
         <feMergeNode in="slice_3a" />
         <feMergeNode in="slice_3b" />
-        <feMergeNode in="slice_4a" />
-        <feMergeNode in="slice_4b" />
     </feMerge>
     </filter>
     </defs>

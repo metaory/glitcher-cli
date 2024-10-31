@@ -75,7 +75,7 @@ read -r WIDTH < <(bc <<<"${#TXT} * 18")
 
 cat <<EOF >"$OUT"
 <svg xmlns="http://www.w3.org/2000/svg"
-     viewBox="0 0 ${WIDTH} 40" >
+     viewBox="0 0 ${WIDTH} 24" >
       <!-- made with glitcher-cli v0.3
 
         █▀▀ █░░ █ ▀█▀ █▀▀ █░█ █▀▀ █▀█
@@ -92,8 +92,8 @@ cat <<EOF >"$OUT"
             font-weight="bolder"
             font-size="x-large"
             text-anchor="middle"
-            dominant-baseline="middle"
-            x="50%" y="50%"
+            dominant-baseline="mathematical"
+            x="50%" y="42%"
       >${TXT}</text>
       <defs>
       <filter id="glitch"
