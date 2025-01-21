@@ -32,62 +32,51 @@ EOF
   sleep 3
 }
 
-function rnd_int {
-  local MAX="${1:-24}"
-  echo $(((RANDOM % MAX) + 8))
-}
-
-function rnd_float {
-  local MAX="${1:-99}"
-  local REV="${2:-0}"
-  ((RANDOM % 2 && REV)) && NEG=-1 || NEG=1
-  printf '%.2f\n' "$(bc -l <<<"scale=2; ($(((RANDOM % MAX) + 1)) / 100) * $NEG")"
+function rnd {
+  awk \
+    -v s="$RANDOM" \
+    -v min="${1:-0}" \
+    -v max="${2:-1}" \
+    -v neg="${3:-0}" '
+        BEGIN {
+            srand(s);
+            printf"%.2f", min+rand()*(max-min)*(neg==0?1:rand()>.5?1:-1)
+        }'
 }
 
 function rnd_seq {
+  local upper="${1:?BAD}"
   local keys=()
   local vals=''
-  local count=0
-  local steps="$(((RANDOM % 16) + 8))"
-  while ((count < steps)); do
-    ((count++))
-    keys+=("$(rnd_float)")
-  done
+  local steps="$(((RANDOM % 8) + 8))"
+  for ((i = 0; i < steps - 2; i++)); do keys+=("$(rnd 0.08 1)"); done
   mapfile -t keys < <(
     printf '0;\n'
     printf '%s;\n' "${keys[@]}" | sort -g | uniq
   )
-  for _ in "${keys[@]}"; do
-    ((UPPER = RANDOM % 6 ? 2 : 4))
-    vals+="$(rnd_float ${UPPER} 1); "
-  done
+  for _ in "${keys[@]}"; do vals+="$(rnd 0.001 "$upper" 1); "; done
   local ks="${keys[*]}"
   printf '%s\n%s' "${ks::(-1)}" "${vals::(-2)}"
 }
 
-mapfile -t B_SHIFT < <(rnd_seq)
-mapfile -t R_SHIFT < <(rnd_seq)
-read -r B_DUR < <(rnd_int 60)
-read -r R_DUR < <(rnd_int 60)
-read -r WIDTH < <(bc <<<"${#TXT} * 18")
+mapfile -t B_SHIFT < <(rnd_seq 0.016)
+mapfile -t R_SHIFT < <(rnd_seq 0.016)
+read -r B_DUR < <(rnd 50 60)
+read -r R_DUR < <(rnd 55 60)
+read -r WIDTH < <(bc <<<"${#TXT} * 17")
 
 ((GLITCHER_DEBUG)) && RECT='<rect fill="#ee33aa" width="100%" height="100%" x="0" y="0" />'
 
 cat <<EOF >"$OUT"
 <svg xmlns="http://www.w3.org/2000/svg"
-     viewBox="0 0 ${WIDTH} 24" >
-      <!-- made with glitcher-cli v0.3
-
+     viewBox="0 0 ${WIDTH} 32" >
+      <!-- made with glitcher-cli v0.6
         █▀▀ █░░ █ ▀█▀ █▀▀ █░█ █▀▀ █▀█
         █▄█ █▄▄ █ ░█░ █▄▄ █▀█ ██▄ █▀▄
-
       https://github.com/metaory/glitcher-cli -->
-      <style>
-          text { fill: #220033; }
-          @media (prefers-color-scheme: dark) { text { fill: #DDCCFF; } }
-      </style>
       ${RECT}
       <text filter="url(#glitch)"
+            fill="#EEAAFF"
             font-family="monospace, serif"
             font-weight="bolder"
             font-size="x-large"
@@ -98,7 +87,7 @@ cat <<EOF >"$OUT"
       <defs>
       <filter id="glitch"
               primitiveUnits="objectBoundingBox"
-              x="-10%"
+              x="-20%"
               y="0%"
               width="120%"
               height="100%">
@@ -116,7 +105,7 @@ cat <<EOF >"$OUT"
                          values="0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0" />
           <feOffset in="red"
                     result="red-shifted"
-                    dx="-0.05"
+                    dx="-0.01"
                     dy="0">
           <animate attributeName="dx"
                    keyTimes="${R_SHIFT[0]}"
@@ -129,7 +118,7 @@ cat <<EOF >"$OUT"
             </feOffset>
             <feOffset in="blue"
                       result="blue-shifted"
-                      dx="0.05"
+                      dx="0.01"
                       dy="0">
                 <animate attributeName="dx"
                          keyTimes="${B_SHIFT[0]}"
@@ -156,13 +145,13 @@ SLICES=()
 
 function put_slice {
   ((I++))
-  read -r S1 < <(rnd_int 30)
-  read -r S2 < <(rnd_int 10)
-  read -r DR < <(rnd_int 60)
+  read -r S1 < <(rnd 6 24)
+  read -r S2 < <(rnd 6 16)
+  read -r DR < <(rnd 30 60)
+  read -r NX < <(bc <<<"$NW + $S1")
 
-  mapfile -t SEQ < <(rnd_seq)
+  mapfile -t SEQ < <(rnd_seq 0.012)
 
-  NX=$((NW + S1))
   SA="slice_${I}a"
   SB="slice_${I}b"
   SLICES+=("$SA" "$SB")
@@ -190,16 +179,14 @@ function put_slice {
                  fill="freeze" />
     </feOffset>
 EOF
-  NW=$((NX + S2))
+  read -r NW < <(bc <<<"($NX + $S2)*1/1")
 }
 
 while ((NW <= 100)); do put_slice; done
 
 cat <<<'    <feMerge>' >>"$OUT"
 
-for S in "${SLICES[@]}"; do
-  cat <<<"        <feMergeNode in=""\"${S}\""" />" >>"$OUT"
-done
+for S in "${SLICES[@]}"; do cat <<<"        <feMergeNode in=""\"${S}\""" />" >>"$OUT"; done
 
 cat <<EOF >>"$OUT"
     </feMerge>

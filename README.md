@@ -30,7 +30,7 @@
 
 ---
 
-> [!Tip]
+> [!TIP]
 > The following attributes are random
 >
 > - number of slices
@@ -63,7 +63,7 @@ git clone git@github.com:metaory/glitcher-cli.git
 cd glitcher-cli
 ```
 
-> [!Tip]
+> [!TIP]
 > Temporary usage
 > `bash glitcher out.svg hello world`
 
@@ -116,7 +116,7 @@ TODO
 
 ---
 
-> [!Caution]
+> [!CAUTION]
 > Only tested on Linux
 
 ---
