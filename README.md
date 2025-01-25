@@ -1,31 +1,18 @@
 <div align="center">
-  <h1>ḠĿ𐪌𐌕ꛕ𖩘꠵ⵤ</h1>
+  <img src=".github/logo.svg" width="60%"/>
   <h4>generate animated pseudo random glitch SVG from ASCII characters</h4>
-  <img src=".github/assets/glitcher.svg" width="45%" height="30" />
-  <img src=".github/assets/logo.svg" width="45%" height="30" />
 </div>
-
----
-
 <div align="center">
-    <img src=".github/assets/line_1.svg" width="100%" height="30"/>
+  <img src=".github/log1.svg" width="40%" />
+  <img src=".github/log2.svg" width="40%" />
 </div>
-
----
-
 <div align="center">
-  <img src=".github/assets/demo_1.svg" width="30%" height="30" />
-  <img src=".github/assets/demo_2.svg" width="30%" height="30" />
-  <img src=".github/assets/demo_3.svg" width="30%" height="30" />
-  <img src=".github/assets/demo_4.svg" width="30%" height="30" />
-  <img src=".github/assets/demo_5.svg" width="30%" height="30" />
-  <img src=".github/assets/demo_6.svg" width="30%" height="30" />
+  <img src=".github/log3.svg" width="60%" />
 </div>
-
----
-
 <div align="center">
-  <img src=".github/assets/line_2.svg" width="100%" height="20"/>
+  <img src=".github/dem1.svg" width="30%" />
+  <img src=".github/dem2.svg" width="30%" />
+  <img src=".github/dem3.svg" width="30%" />
 </div>
 
 ---
@@ -39,12 +26,6 @@
 > - duration of animations
 > - keyTime of animations
 > - values of frames
-
----
-
-<div align="center">
-  <img src=".github/assets/line_3.svg" width="100%" height="20"/>
-</div>
 
 ---
 
@@ -81,12 +62,6 @@ glitcher out.svg hello world
 
 ---
 
-<div align="center">
-  <img src=".github/assets/line_4.svg" width="100%" height="20"/>
-</div>
-
----
-
 SYNOPSIS
 --------
 
@@ -119,17 +94,6 @@ TODO
 > [!CAUTION]
 > Only tested on Linux
 
----
-
-<div align="center">
-  <img src=".github/assets/line_5.svg" width="100%" height="20"/>
-</div>
-
----
-
-<div align="center">
-  <h1>ḠĿ𐪌𐌕ꛕ𖩘꠵ⵤ</h1>
-</div>
 
 ---
 
