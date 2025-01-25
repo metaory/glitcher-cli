@@ -83,7 +83,7 @@ cat <<EOF >"$OUT"
             font-size="x-large"
             text-anchor="middle"
             lengthAdjust="spacingAndGlyphs"
-            textLength="90%"
+            textLength="70%"
             dominant-baseline="mathematical"
             x="50%" y="30%"
       >${TXT}</text>
