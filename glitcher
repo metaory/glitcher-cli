@@ -59,17 +59,17 @@ function rnd_seq {
   printf '%s\n%s' "${ks::(-1)}" "${vals::(-2)}"
 }
 
-mapfile -t B_SHIFT < <(rnd_seq 0.016)
-mapfile -t R_SHIFT < <(rnd_seq 0.016)
-read -r B_DUR < <(rnd 50 60)
-read -r R_DUR < <(rnd 55 60)
-read -r WIDTH < <(bc <<<"${#TXT} * 17")
+mapfile -t B_SHIFT < <(rnd_seq 0.01)
+mapfile -t R_SHIFT < <(rnd_seq 0.01)
+read -r B_DUR < <(rnd 10 20)
+read -r R_DUR < <(rnd 15 20)
+read -r WIDTH < <(bc <<<"${#TXT} * 12")
 
 ((GLITCHER_DEBUG)) && RECT='<rect fill="#ee33aa" width="100%" height="100%" x="0" y="0" />'
 
 cat <<EOF >"$OUT"
 <svg xmlns="http://www.w3.org/2000/svg"
-     viewBox="0 0 ${WIDTH} 32" >
+     viewBox="0 0 ${WIDTH} 22" >
       <!-- made with glitcher-cli v0.7
         █▀▀ █░░ █ ▀█▀ █▀▀ █░█ █▀▀ █▀█
         █▄█ █▄▄ █ ░█░ █▄▄ █▀█ ██▄ █▀▄
@@ -147,12 +147,12 @@ SLICES=()
 
 function put_slice {
   ((I++))
-  read -r S1 < <(rnd 6 24)
-  read -r S2 < <(rnd 6 16)
-  read -r DR < <(rnd 30 60)
+  read -r S1 < <(rnd 10 24)
+  read -r S2 < <(rnd 10 16)
+  read -r DR < <(rnd 10 24)
   read -r NX < <(bc <<<"$NW + $S1")
 
-  mapfile -t SEQ < <(rnd_seq 0.012)
+  mapfile -t SEQ < <(rnd_seq 0.01)
 
   SA="slice_${I}a"
   SB="slice_${I}b"
