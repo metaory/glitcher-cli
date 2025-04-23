@@ -2,6 +2,18 @@
   <img src=".github/logo.svg" width="60%"/>
   <h4>generate animated pseudo random glitch SVG from ASCII characters</h4>
 </div>
+
+---
+
+<div align="center">
+  <h2>
+    <img valign="middle" src="https://raw.githubusercontent.com/metaory/glitcher-app/refs/heads/master/public/logo.svg" width="100px" />
+    <kbd>Glitcher Web App</kbd> is now live! 🎉
+    <br>
+    <a href="https://metaory.github.io/glitcher-app/" target="_blank">metaory.github.io/glitcher-app</a>
+  </h2>
+</div>
+
 <div align="center">
   <img src=".github/log1.svg" width="40%" />
   <img src=".github/log2.svg" width="40%" />
